@@ -1,0 +1,359 @@
+1.What are ASP.NET MVC Filters and Attributes?
+Ans. ASP.NET MVC provides a simple way to inject your piece of code or logic either before or after an action is executed. This is achieved by decorating the controllers or actions with ASP.NET MVC attributes or custom attributes. An attribute or custom attribute implements the ASP.NET MVC filters (filter interface) and can contain your piece of code or logic. You can make your own custom filters or attributes either by implementing ASP.NET MVC filter interface or by inheriting and overriding methods of ASP.NET MVC filter attribute class if available.
+Typically, Filters are used to perform the following common functionalities in your ASP.NET MVC application.
+1. Custom Authentication
+2. Custom Authorization (User based or Role based)
+3. Error handling or logging
+4. User Activity Logging
+5. Data Caching
+6. Data Compression
+2.What is Scaffolding?
+Ans. Scaffolding is a technique used by many MVC frameworks like ASP.NET MVC, Ruby on Rails, Cake PHP and Node.JS etc., to generate code for basic CRUD (create, read, update, and delete) operations against your database effectively. Further you can edit or customize this auto generated code according to your need.
+Scaffolding consists of page templates, entity page templates, field page templates, and filter templates. These templates are called Scaffold templates and allow you to quickly build a functional data-driven Web site.
+3.What are different ways of rendering a Partial View in ASP.NET MVC?
+Ans. There are four methods for rendering a partial view in ASP.NET MVC Those are RenderPartial, RenderAction, Partial and Action helper methods.
+Html.RenderPartial:
+*This method result will be directly written to the HTTP response stream means it used the same TextWriter object as used in the current webpage/template.
+*This method returns void.
+*Simple to use and no need to create any action.
+*RenderPartial method is useful used when the displaying data in the partial view is already in the corresponding view model.
+Html.RenderAction :
+* This method result will be directly written to the HTTP response stream means it used the same TextWriter object as used in the current webpage/template.
+*For this method, we need to create a child action for the rendering the partial view.
+*RenderAction method is useful when the displaying data in the partial view is independent from corresponding view model
+Html.Partial :
+* Renders the partial view as an HTML-encoded string.
+*This method result can be stored in a variable, since it returns string type value.
+*Simple to use and no need to create any action.
+* Partial method is useful used when the displaying data in the partial view is already in the corresponding view model
+Html.Action :
+*Renders the partial view as an HtmlString .
+*For this method, we need to create a child action for the rendering the partial view.
+*This method result can be stored in a variable, since it returns string type value.
+*Action method is useful when the displaying data in the partial view is independent from corresponding view model
+4.What is Partial View in ASP.NET MVC?
+Ans. Partial views helps us to reduce code duplication. Hence partial views are reusable views like as Header and Footer views.We can use partial view to display blog comments, product category, social bookmarks buttons, a dynamic ticker, calendar etc. It is best practice to create partial view in the shared folder and partial view name is preceded by "_", but it is not mandatory. The "_" before view name specify that it is a reusable component i.e. partial view.
+5.How to enable and disable client-side validation in ASP.NET MVC?
+Ans. We can enable and disable the client-side validation by setting the values of ClientValidationEnabled & UnobtrusiveJavaScriptEnabled keys true or false. This setting will be applied to application level.
+<add key="ClientValidationEnabled" value="true" />
+<add key="UnobtrusiveJavaScriptEnabled" value="true" />
+For client-side validation, the values of above both the keys must be true. When we create new project using Visual Studio in MVC3 or MVC4, by default the values of both the keys are set to true.
+We can also enable the client-side validation programmatically. For this we need to do code with in the Application_Start() event of the Global.asax, as shown below. protected void Application_Start()
+{
+//Enable or Disable Client Side Validation at Application Level
+HtmlHelper.ClientValidationEnabled = true;
+HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
+}
+6.What is Data Annotations in ASP.NET MVC?
+Ans. Data validation is a key aspect for developing web application. In Asp.net MVC, we can easily apply validation to web application by using Data Annotation attribute classes to model class. Data Annotation attribute classes are present in System.ComponentModel.DataAnnotations namespace and are available to Asp.net
+projects like Asp.net web application & website, Asp.net MVC, Web forms and also to Entity framework ORM models.
+Data Annotations help us to define the rules to the model classes or properties for data validation and displaying suitable messages to end users.
+Data Annotation Validator Attributes
+*DataType - Specify the datatype of a property
+*DisplayName - specify the display name for a property.
+*DisplayFormat - specify the display format for a property like different format for Date property.
+* Required - Specify a property as required.
+*ReqularExpression - validate the value of a property by specified regular expression pattern.
+*Range - validate the value of a property within a specified range of values.
+*StringLength - specify min and max length for a string property.
+* MaxLength - specify max length for a string property.
+* Bind - specify fields to include or exclude when adding parameter or form values to model properties.
+* ScaffoldColumn - specify fields for hiding from editor forms.
+7.What are Action methods in ASP.NET MVC?
+Ans. Controller actions are methods defined in the controller class and responsible to perform required operations on the user's inputs like as form values, query strings values etc. with the help of Model and passing the results back to the View. Asp.net MVC has the following built-in ActionResults Type and Helper methods:
+1. ViewResult - Returns a ViewResult which renders the specified or default view by using controller View() helper method.
+2. PartialViewResult - Returns a PartialViewResult which renders the specified or default partial view (means a view without its layout) by using controller PartialView() helper method.
+3. RedirectResult - Returns a RedirectResult which Issues an HTTP 301 or 302 redirection to a specific URL by using controller Redirect() helper method.
+4. RedirectToRouteResult - Returns a RedirectToRouteResult which Issues an HTTP 301 or 302 redirection to an action method or specific route entry by using controller RedirectToAction(), RedirectToActionPermanent(), RedirectToRoute(), RedirectToRoutePermanent() helper methods.
+5. ContentResult - Returns a ContentResult which renders raw text like as "Hello, DotNet Tricks!" by using controller Content() helper method.
+6. JsonResult - Returns a JsonResult which serializes an object in JSON format ( like as "{ "Message": Hello, World! }") and renders it by using controller Json() helper method.
+7. JavaScriptResult - Returns a JavaScriptResult which renders a snippet of JavaScript code like as "function hello() { alert(Hello, World!); }" by using controller JavaScript() helper method. This is used only in AJAX scenarios.
+8. FileResult - Returns a FileResult which renders the contents of a file like as PDF, DOC, Excel etc. by using controller File() helper method.
+9. EmptyResult - Returns no result returned by an action. This has no controller helper method.
+10. HttpNotFoundResult - Returns an HttpNotFoundResult which renders a 404 HTTP Status Code response by using controller HttpNotFound() helper method.
+11. HttpUnauthorizedResult - Returns an HttpUnauthorizedResult which renders a 401 HTTP Status Code (means "not authorized") response. This has no controller helper method. This is used for authentication (forms authentication or Windows authentication) to ask the user to log in.
+12. HttpStatusCodeResult - Returns an HttpStatusCodeResult which renders a specified HTTP code response. This has no controller helper method.
+8.What are differences among ViewData, ViewBag, TempData and Session?
+Ans. In ASP.NET MVC there are three ways - ViewData, ViewBag and TempData to pass data from controller to view and in next request. Like WebForm, you can also use Session to persist data during a user session.
+ViewData
+*ViewData is a dictionary object that is derived from ViewDataDictionary class.
+*ViewData is used to pass data from controller to corresponding view.
+*It’s life lies only during the current request.
+* If redirection occurs then it’s value becomes null.
+*It’s required typecasting for getting data and check for null values to avoid error.
+ViewBag
+* ViewBag is a dynamic property that takes advantage of the new dynamic features in C# 4.0.
+*Basically it is a wrapper around the ViewData and also used to pass data from controller to corresponding view.
+* It’s life also lies only during the current request.
+* If redirection occurs then it’s value becomes null.
+*It doesn’t required typecasting for getting data.
+TempData
+*TempData is a dictionary object that is derived from TempDataDictionary class and stored in short lives session.
+* TempData is used to pass data from current request to subsequent request (means redirecting from one page to another).
+* It’s life is very short and lies only till the target view is fully loaded.
+*It’s required typecasting for getting data and check for null values to avoid error.
+* It is used to store only one time messages like error messages, validation messages.
+Session
+*Session is also used to pass data within the ASP.NET MVC application and Unlike TempData, it never expires.
+*Session is valid for all requests, not for a single redirect.
+* It’s also required typecasting for getting data and check for null values to avoid error
+9.What are different ways of returning/rendering a view in ASP.NET MVC?
+Ans. There are four different ways for returning/rendering a view in ASP.NET MVC as given below:
+1. Return View() - This tells MVC to generate HTML to be displayed for the specified view and sends it to the browser. This acts like as Server.Transfer() in Asp.Net WebForm.
+2. Return RedirectToAction() - This tells MVC to redirect to specified action instead of rendering HTML. In this case, browser receives the redirect notification and make a new request for the specified action. This acts like as Response.Redirect() in Asp.Net WebForm.
+Moreover, RedirectToAction construct a redirect url to a specific action/controller in your application and use the route table to generate the correct URL. RedirectToAction cause the browser to receive a 302 redirect within your application and gives you an easier way to work with your route table.
+3. Return Redirect() - This tells MVC to redirect to specified URL instead of rendering HTML. In this case, browser receives the redirect notification and make a new request for the specified URL. This also acts like as Response.Redirect() in Asp.Net WebForm. In this case, you have to specify the full URL to redirect.
+Moreover, Redirect also cause the browser to receive a 302 redirect within your application, but you have to construct the URLs yourself.
+Return RedirectToRoute() - This tells MVC to look up the specifies route into the Route table that is defined in global.asax and then redirect to that controller/action defined in that route. This also make a new request like RedirectToAction().
+Note
+1. Return View doesn't make a new requests, it just renders the view without changing URLs in the browser's address bar.
+2. Return RedirectToAction makes a new requests and URL in the browser's address bar is updated with the generated URL by MVC.
+3. Return Redirect also makes a new requests and URL in the browser's address bar is updated, but you have to specify the full URL to redirect
+4. Between RedirectToAction and Redirect, best practice is to use RedirectToAction for anything dealing with your application actions/controllers. If you use Redirect and provide the URL, you'll need to modify those URLs manually when you change the route table.
+5. RedirectToRoute redirects to a specific route defined in the Route table
+10.What is App_Start folder in ASP.NET MVC?
+Ans. App_Start folder has been introduced in MVC4. It contains various configurations files like as BundleConfig.cs, FilterConfig.cs, RouteConfig.cs, WebApiConfig.cs for your application. All these settings are registered within Application_Start method of Global.asax.cs file.
+* BundleConfig.cs - This is used to create and register bundles for CSS and JS files. By default, various bundles are added in this files including jQuery, jQueryUI, jQuery validation, Modernizr, and Site CSS.
+*FIlterConfig.cs - This is used to register global MVC filters like error filters, actions filters etc. By default it contains HandleErrorAttribute filter.
+* RouteConfig.cs - This is used to register various route patterns for your ASP.NET MVC application. By default, one route is registered here named as Default Route.
+* WebApiConfig.cs - This is used to register various Web API routes like as ASP.NET MVC, as well as set any
+additional Web API configuration settings.
+
+
+*****************************************************************************************************************************************
+*****************************************************************************************************************************************
+1.How to make detect the errors at compile time in views?
+In views by default <MvcBuildViews> is set to false, to detect the errors in views we need to change this value to true like
+<MvcBuildViews> true </MvcBuildViews>.
+
+Open the .csproj file of the solution in notepad search for the <MvcBuildViews> then set to true then save changes.
+2.How many ways we can pass data from controller to a view in mvc application?
+Using ViewBag or view Data. - We dont get compile time errors
+Using Dynamic type(@model dynamic (I.e we have to call like: @Model.Propertie) - We dont get compile time errors
+Using Strongly Typed View @model MVCDemo.Models.Employee(I.e we have to call like: @Model.Propertie) - We will get compile time errors
+
+Advantages of using strongly typed views are intellisence and compile time error chacking.
+
+What is Partial view?
+Partial view is nothing but some part of the view. like web usercontrol in asp.net web forms.
+Partial views are used to encapsulate reusable view logic and are a great means to simplify the complexity of views. these partial views can be used in multiple views, where we need similar view logic.
+
+Advantages: 
+Make views simpler to undersatnd Amount of code will be redused.
+Maintainability is much easier, no need to update every where this logic is used.
+
+What is the Difference between Partial and RenderPartial Html helper methods?
+Both HtmlHelperMethods are designed to render the partial view.
+Primary difference between both is return type of RenderPartial is void, where as partial is MvcHtmlString
+Syntax for invoking  Partial html helper method is 
+@Html.Partial("PartialViewName",item)
+Syntax for invoking  RenderPartial html helper method is 
+{Html.RenderPartial("PartialViewName",item);} (becoz output of this function will return directly to the output Stream)
+
+When would you use Partial() over RenderPartial() and vice versa?
+When there is a need to assign output to varaible for manipulating it, then use Partial(), else use RenderPartial().
+
+Which one is better for Parformance?
+rendering directly to the output stream is better, so RenderPartial() does exactly.
+
+
+File extension is for the aspx views it is ascx for both C# and vb 
+For Razor View .cshtml for C#, .vbhtml for visual basic
+
+What are T4 Templates and their purpose?
+T4 stands for Text Template Transformation Tool Kit and are used by visual studio to generate code when you add a view or controller.
+Where does these templates live?
+Controlers are in:
+C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ItemTemplates\CSharp\Web\MVC 4\CodeTemplates\AddController.
+Views are in :
+C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ItemTemplates\CSharp\Web\MVC 4\CodeTemplates\AddView\CSHTML
+What is the file extension for t4 files?
+.tt
+Is it possible to add your own t4 templates to the existing list of templates?
+Absolutely Simply create a file with .tt file extension.
+
+What is Cross Site Scripting (xss)?
+
+Cross-site scripting is one of the most dangerous website vulnerabilities. It is used in various ways to harm website users. Mostly it is used to perform session hijacking attacks. it is possible to resist from the hackers with using XSS filters.
+
+What is XSS Filters?
+Preventing the  malicious characters from the user we will use XSS Filters.
+To resist the malicious code from the hackers we will write the XSS filters.
+Ex:While we are accepting the comments from the user they may write script and html code in that which may malicious
+How to accept htmlcode from the user?
+By decorating the action method with [ValidateInput(false)] attribute, By using the @html.Raw(elementname) helper class.
+
+to do this Lets take an example
+
+If we want to provide user to enter html code we have to validate that in following manner
+
+[HttpPost]
+[ValidateInput(false)]// this will prevent from validating the user input
+public ActionResult MyMethod(Comments comment)
+{
+//to customize the user input prevention
+StringBuilder sbComment= new StringBuilder();
+sbComment.Append(HttpUtility.HtmlEncode(comment.Comments));
+sbComment.Replace("&lt;b&gt;","<b>");// &lt is decoded form of< and &gt for >
+sbComment.Replace("&lt;/b&gt;","</b>");
+sbComment.Replace("&lt;u&gt;","<u>");
+sbComment.Replace("&lt;/u&gt;","</u>");
+
+comment.Comments=sbComments.Tostring();
+//Now user can able to add bold, underline tags to comment text box if anything other than this can be encoded.
+string strEncodedName= HttpUtility.HtmlEncode(comment.Name);
+comment.Name=strEncodedName;
+//then Add Create logic
+if(ModelState.IsValid)
+{
+db.Comments.AddObject(comment);
+db.SaveChanges();
+
+return RedirectToAction("Index");
+}
+return View(comment);
+}.
+How to display accepted html code from the user.
+By using @Html.Raw(item.Comments) instead @Html.DisplayFor(modelItem=> item.Comments)
+
+What is _ViewStart.cshtml?
+Asp.NetMVC3, Has introduced _ViewStart.cshtml. Specify the layout Property in this file and place it in the views folder. All the views will then use the Layout file that is specified in _ViewStart.cshtml. This eliminates the need to specify the Layout Property on each and every view , and making more cleaned and maintainable.
+
+If you want a set of views in a specific folder, to user a different layout file, then you can include another _ViewStart.cshtml file in that specific folder.
+
+When I use _ViewStart.cshtml file, can i still set layout property on individual views?
+Yes, if you want to use a layout file  that os different from what is specified in _ViewStart.cshtml.
+
+Where else can i specify a layout file?
+layout file can also be specified  in  a controller action method or in an action filter.
+Public actionResult Create()
+{
+return View("ViewName","_SharedView");(i.e return view())
+}
+Using Layout File :
+All shared view file names should be prefix with _ (its not rule but if we do that we can easily identify that is shared view) like _Layout File.
+_Layout file will have Html code which can be sharable to all the views
+
+_Layout file will have @Renderbody html helper. @ RenderBody will replace with the respective view when trying to the respective view. all the shared views can be in ~/Views/Shared/_sharedView.cshtml. root
+
+If we want our shared view can be Renderd for all the views, then create _ViewStart.cshtml under the Views root. then Specify the Root in that.
+
+Like:
+@{
+Layout="~/Views/Shared/_Layout.cshtml";
+}
+
+If We want our Home Controller Views should use other Shared View then 
+
+Under the Views/ Home folder Create one _ViewStart.cshtml then Write
+
+Like:
+@{
+Layout="~/Views/Shared/_OtherLayout.cshtml";
+}
+
+This will Override the ~/Views/_ViewStart.cshtml With ~/Views/Home/_ViewStart.cshtml so Now onwards we can see _OtherLayout.cshtml UI for the Home Views
+
+If we want specific View should use Different Layout then 
+ Open The View
+@Model ......
+@{
+ViewBage.Title="Employee Page";
+Layout="~/Views/Shared/_DifferentLayout.cshtml";
+}
+
+
+How to make property as read only?
+go to View change @Html.EditFor(model=>model.name) to
+ @Html.DisplayFor(model=>model.name)
+ @Html.HiddenFor(model=>model.name)
+
+This will
+
+
+
+[post]
+public actionresult Edit(int id)// changed from Employee e
+{
+EmployessBusinessLayer ebl= new EmployessBusinessLayer();
+Employee employee=ebl.Employees.Single(x=>x.ID==id);
+UpdateModel(employee, new string{"ID","Gender","City"});// this line will do the job of property readonly
+if(ModelState.IsValid)
+{
+ebl.SaveEmployee(employee);
+return RedirectToAction("Index");
+}
+
+How Do you Prevent properties from being binded automatically?
+This can be done in a single line of code
+UpdateModel<TModel>(TModel model,string prefix, string[] includeProperties,string[] excludeProperties);
+
+By using two ways
+1.Include list(White List) 
+
+UpdateModel<TModel>(TModel model, string[] includeProperties);
+ex:UpdateModel(employee,new string{"ID","Gender","City"});
+
+2.Exclude List(Block List)
+
+UpdateModel<TModel>(TModel model,string prefix, string[] includeProperties,string[] excludeProperties);
+ex:UpdateModel(employee,null,null,new string{"Name"});
+
+3.Using Bind Attribute
+[post]
+public actionresult Edit([Bind(include="ID,Gender,City")]Employee employee)// this line will do the job of property readonly or use([Bind(exclude="Name")]Employee employee)
+{
+EmployessBusinessLayer ebl= new EmployessBusinessLayer();
+employee.Name=ebl.Employees.Single(x=>x.ID==employee.ID).Name;
+if(ModelState.IsValid)
+{
+ebl.SaveEmployee(employee);
+return RedirectToAction("Index");
+}
+
+4.Using Interfaces
+
+We have below class
+public class Emploee
+{
+public int ID{get;set;}
+public string Name{get;set;}
+[Required]
+public string Gender{get;set;}
+[Required]
+public string City{get;set;}
+}
+then Create one Interface
+***************public Interface IEmployee
+{
+int ID{get;set;}
+string Gender{get;set;}
+string City{get;set;}
+}// here we dont have name propertie ********************
+then 
+Public class Employee:IEmployee
+{
+//define properties
+}
+then
+[post]
+public actionresult Edit(int id)// changed from Employee e
+{
+EmployessBusinessLayer ebl= new EmployessBusinessLayer();
+Employee employee=ebl.Employees.Single(x=>x.ID==id);
+************UpdateModel<IEmployee>(employee);// this line will do the job of property readonly*****************
+if(ModelState.IsValid)
+{
+ebl.SaveEmployee(employee);
+return RedirectToAction("Index");
+}
+
+
+Writing Delete Action Method
+[HttpPost]
+
+
+In View
+<input type="submit" Value="Delete" onclick="return confirm('Are you sure you want to delte With ID=@item.ID')"/>
+
+
